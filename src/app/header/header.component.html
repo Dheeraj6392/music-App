@@ -1,0 +1,40 @@
+
+<div>
+
+    <!-- threeDots -->
+    <div class="three-dots-icon" (click)="toggleSidebar()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="100" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+        </svg>
+      </div>
+
+     <!-- Sidebar -->
+     <div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
+        <ul>
+          <li>Home</li>
+          <li>Radio</li>
+          <li>Podcast</li>
+          <li>Videos</li>
+        </ul>
+      </div>
+
+
+   <img id="icons" src="assets/icon.png" alt="">
+   
+    <h3 id="logo">TuneTrail</h3>
+
+       <div class="_a" style="font-family:  sans-serif;">
+        <ul>All</ul>
+        <ul>Trending Songs</ul>
+        <ul>New Songs</ul>
+        
+       </div> 
+        
+
+        <form  class="srch" action="/search" method="GET">
+            <input type="text" name="query" placeholder="what do want to play?">
+            <button type="submit">Search</button>
+        </form>
+
+        <a class="btn" href="#" role="button">sign up</a>
+</div>

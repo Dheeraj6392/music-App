@@ -1,0 +1,7 @@
+/* styles.css or styles.scss */
+@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
+
+/* Optional: Apply the font globally */
+body {
+    font-family: 'Protest Strike', sans-serif; /* Set a default font for the body */
+}

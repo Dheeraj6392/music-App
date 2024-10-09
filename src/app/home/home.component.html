@@ -1,0 +1,16 @@
+
+<div class="cards">
+    <img [src]="track?.image" alt="image">
+  
+    <audio id="song" #song>
+      <source [src]="track?.audio" type="audio/mpeg">
+    </audio>
+    
+    <input type="range" value="0" id="progress" #progress (input)="updateSongTime($event)">
+  
+    <div class="controls">
+      <div><i class="bi bi-skip-backward-fill fs-3"></i></div>
+      <div><i class="bi bi-play-fill fs-1" id="ctrlIcon" #ctrlIcon (click)="playPause()"></i></div>
+      <div><i class="bi bi-skip-forward-fill fs-3"></i></div>
+    </div>
+  </div>

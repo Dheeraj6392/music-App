@@ -1,0 +1,29 @@
+
+ .home{ 
+    /* background: #11151c; */
+    /* width: 100%; */
+    padding: 10px;
+    margin: 4px;
+    border: 2px solid black;
+    height: 40vw; 
+    overflow-y: scroll;
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    display: flex;
+}  
+
+app-home {
+    /* flex: 1 1 calc(33.33% - 20px);  */
+    box-sizing: border-box; /* Ensures padding/margin doesn't affect width */
+}
+
+   .header{
+    /* position: fixed;    */
+    top: 0;        
+    left: 0;           
+    width: 100%;       
+    background-color: #f1f1f1;  
+    /* padding: 10px;     */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2); 
+  }
