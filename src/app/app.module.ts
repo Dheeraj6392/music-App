@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'}, // Default route
@@ -20,7 +21,8 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 
-<div>
+<div class="main">
 
     <!-- threeDots -->
     <div class="three-dots-icon" (click)="toggleSidebar()">
@@ -10,7 +10,7 @@
 
      <!-- Sidebar -->
      <div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
-        <ul>
+        <ul >
           <li>Home</li>
           <li>Radio</li>
           <li>Podcast</li>
@@ -23,17 +23,17 @@
    
     <h3 id="logo">TuneTrail</h3>
 
-       <div class="_a" style="font-family:  sans-serif;">
-        <ul>All</ul>
-        <ul>Trending Songs</ul>
-        <ul>New Songs</ul>
+       <div class="_a">
+        <a href="">All</a> 
+        <a href="">Trending Songs</a>
+        <a href="">New Songs</a>
         
        </div> 
         
 
         <form  class="srch" action="/search" method="GET">
             <input type="text" name="query" placeholder="what do want to play?">
-            <button type="submit">Search</button>
+            <button type="submit" class="search-btn">Search</button>
         </form>
 
         <a class="btn" href="#" role="button">sign up</a>

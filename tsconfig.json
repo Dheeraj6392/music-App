@@ -1,5 +1,3 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -29,5 +27,17 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "include": [
+    "src/**/*.ts",                // Include all TypeScript files in the src folder
+    "src/main.ts",                // Include the main entry file
+    "src/polyfills.ts",           // Include polyfills
+    "src/app/app.module.server.ts", // Include server module if used
+    "src/main.server.ts",         // Include main server file if used
+    "server.ts"                   // Include server.ts if it's the entry point
+  ],
+  "exclude": [
+    "node_modules",               // Exclude node_modules folder
+    "**/*.spec.ts"                // Exclude test files
+  ]
 }

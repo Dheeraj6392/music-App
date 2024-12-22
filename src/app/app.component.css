@@ -1,18 +1,16 @@
 
- .home{ 
-    /* background: #11151c; */
-    /* width: 100%; */
+.home {
     padding: 10px;
-    margin: 4px;
+    margin: 0; /* Remove extra margins so it fully spans */
     border: 2px solid black;
-    height: 40vw; 
-    overflow-y: scroll;
-    flex-direction: row; 
-    flex-wrap: wrap; 
-    gap: 20px; 
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow-y: scroll; /* Vertical scroll if content overflows */
     display: flex;
-}  
-
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 app-home {
     /* flex: 1 1 calc(33.33% - 20px);  */
     box-sizing: border-box; /* Ensures padding/margin doesn't affect width */
@@ -25,5 +23,14 @@ app-home {
     width: 100%;       
     background-color: #f1f1f1;  
     /* padding: 10px;     */
+    text-align: center;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.2); 
+  }
+
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
   }

@@ -1,12 +1,7 @@
 
-
-
-
 div{
     display: flex;  
-    /* background: linear-gradient(to right,#ff738d, #ff355a); */
-    background: #e7ecef;
-}
+} 
 
 #icons{
     /* margin-left: 20px; */
@@ -36,9 +31,10 @@ h3 {
     margin-top: 30px;
     margin-bottom: 30px;
     margin-right: 10px;
-    background-color: aqua;
+    background-color: #fff;
     width: 100px;
     border-radius: 5%;
+    border: solid 2px black;
 }
 .srch{
     font-family: sans-serif;
@@ -49,13 +45,6 @@ h3 {
     border-radius: 5%;
 }
 
-
-/* The three dots icon */
-/* .three-dots-icon {
-    cursor: pointer;
-  }
-   */
-  /* Sidebar styles */
   .sidebar {
     margin-top: 104px;
     position: fixed;
@@ -71,8 +60,13 @@ h3 {
   }
   
   .sidebar ul {
+  
+    font-family: sans-serif;
     list-style-type: none;
     padding: 0;
+  }
+  li{
+    margin-top: 10px;
   }
   /* Open class to slide the sidebar in */
   .sidebar.open {
@@ -80,9 +74,47 @@ h3 {
   }
 
 ._a{
+ 
+    font-family: sans-serif;
     margin: 10px 0 0 0;
     width: 830px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+._a a{
+  margin: 10px;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+
+.a a:hover{
+  color: linear-gradient(to right, rgb(55, 192, 21) , rgb(161, 238, 102));
+}
+
+._a a::after{
+  content:'';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: black;
+  border-radius: 5px;
+  left: 0;
+  bottom: -4px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform .5s;
+}
+._a a:hover::after{
+  transform: scaleX(1);
+}
+
+.btn:hover{
+
+  background: linear-gradient(to right, rgb(55, 192, 21) , rgb(161, 238, 102));
+}
+.search-btn:hover{
+  background: linear-gradient(to right, rgb(55, 192, 21) , rgb(161, 238, 102));
 }
