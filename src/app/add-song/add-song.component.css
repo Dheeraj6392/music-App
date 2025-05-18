@@ -1,0 +1,39 @@
+/* Ensure the form takes full height and centers content */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f0f2f5;
+}
+
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.song-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  width: 100%;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-title {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.form-field {
+  width: 100%;
+}

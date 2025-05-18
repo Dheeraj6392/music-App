@@ -1,14 +1,21 @@
-<div class="header">
+ <div class="header">
   <app-header></app-header>
 </div>   
 
-<div class="home">
-  <app-home 
-    *ngFor="let track of tracks" 
-    [track]="track">
-  </app-home>
-</div>
+
+<!-- <router-outlet></router-outlet>
 
 <div class="footer">
   <app-footer></app-footer>
+</div>
+ -->
+
+
+<div class="page-container">
+  <div class="content-wrap">
+    <router-outlet></router-outlet>
+  </div>
+  <footer class="footer">
+    <p>© 2025 My Music App</p>
+  </footer>
 </div>

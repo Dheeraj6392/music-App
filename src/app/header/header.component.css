@@ -1,120 +1,137 @@
 
-div{
-    display: flex;  
-} 
-
-#icons{
-    /* margin-left: 20px; */
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-}
-
-#logo{
-    margin-top: 25px;
-    margin-left: 5px;
-}
-
-
-/* home.component.css */
-h3 {
-    font-family: 'Protest Strike', sans-serif; /* Apply the font to h3 elements */
-    font-size: 36px; /* Adjust the font size */
-    color: #f53192; /* Optional: Set the text color */
-    background: linear-gradient(to right, rgb(55, 192, 21) , rgb(161, 238, 102));
-    color: transparent;
-    -webkit-background-clip: text;
-}
-.btn{
-    /* margin-left: auto; */
-    font-family: sans-serif;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-right: 10px;
-    background-color: #fff;
-    width: 100px;
-    border-radius: 5%;
-    border: solid 2px black;
-}
-.srch{
-    font-family: sans-serif;
-    /* margin-left: 800px; */
-    margin-top: 36px;
-    margin-bottom: 30px;
-    margin-right: 10px;
-    border-radius: 5%;
-}
-
-  .sidebar {
-    margin-top: 104px;
-    position: fixed;
-    top: 0;
-    right: -300px; /* Hidden off-screen */
-    width: 150px;
-    height: 100%;
-    background-color: #e7ecef;
-    color: black;
-    transition:right 0.3s ease;
-    z-index: 1000;
-    padding: 20px;
-  }
-  
-  .sidebar ul {
-  
-    font-family: sans-serif;
-    list-style-type: none;
-    padding: 0;
-  }
-  li{
-    margin-top: 10px;
-  }
-  /* Open class to slide the sidebar in */
-  .sidebar.open {
-    left: 0; /* Show the sidebar */
-  }
-
-._a{
- 
-    font-family: sans-serif;
-    margin: 10px 0 0 0;
-    width: 830px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-._a a{
-  margin: 10px;
-  color: black;
-  text-decoration: none;
+/* Main container */
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
   position: relative;
 }
 
-.a a:hover{
-  color: linear-gradient(to right, rgb(55, 192, 21) , rgb(161, 238, 102));
+/* Three dots icon */
+.three-dots-icon {
+  cursor: pointer;
 }
 
-._a a::after{
-  content:'';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: black;
-  border-radius: 5px;
+.three-dots-icon svg {
+  color: black;
+  transition: transform 0.3s ease;
+}
+
+.three-dots-icon:hover svg {
+  transform: scale(1.1);
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 200px;
+  height: 100%;
+  background: #fff;
+  padding-top: 50px;
+  transition: left 0.3s ease;
+  z-index: 10;
+}
+
+.sidebar.open {
   left: 0;
-  bottom: -4px;
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform .5s;
-}
-._a a:hover::after{
-  transform: scaleX(1);
 }
 
-.btn:hover{
-
-  background: linear-gradient(to right, rgb(55, 192, 21) , rgb(161, 238, 102));
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.search-btn:hover{
-  background: linear-gradient(to right, rgb(55, 192, 21) , rgb(161, 238, 102));
+
+.sidebar ul li {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar ul li:hover {
+  background: #ff5722;
+}
+
+/* Logo and icon */
+#icons {
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+}
+
+#logo {
+  margin-left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Navigation links */
+._a {
+  display: flex;
+  gap: 15px;
+}
+
+._a a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+._a a:hover {
+  color: #ff5722;
+}
+
+/* Search bar */
+.srch {
+  display: flex;
+  align-items: center;
+  background: #1e1e1e;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.srch input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 8px;
+  font-size: 14px;
+  width: 200px;
+}
+
+.srch input::placeholder {
+  color: #bbb;
+}
+
+.search-btn {
+  background: #ff5722;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #e64a19;
+}
+
+/* Sign-up button */
+.btn {
+  background: #ff5722;
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #e64a19;
 }

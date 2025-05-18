@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AudioControlService } from './audio-control.service';
+import { AudioControlService } from '../audio-control.service';
 
 describe('AudioControlService', () => {
   let service: AudioControlService;

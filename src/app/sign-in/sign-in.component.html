@@ -1,1 +1,26 @@
-<p>sign-in works!</p>
+<div class="signup-container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    
+        <h2>SignUp</h2>
+
+        <mat-form-field appearance="outline">
+            <mat-label>UserName</mat-label>
+            <input matInputformControlName="username">
+            <mat-error *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">Username is required (min 3 chars)</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formConrolName="email">
+            <mat-error *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">Enter a valid Email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="Password" formConrolName="password">
+            <mat-error *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">password must be at least 6 characters</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">SingUp</button>
+    </form>
+</div>

@@ -1,7 +1,31 @@
-/* styles.css or styles.scss */
 @import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
 
-/* Optional: Apply the font globally */
 body {
-    font-family: 'Protest Strike', sans-serif; /* Set a default font for the body */
+  font-family: 'Protest Strike', sans-serif;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  flex: 1;
+  display: flex; /* Needed to allow vertical centering */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }

@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
-import { AudioControlService } from '../audio-control.service';
+import { AudioControlService } from '../services/audio-control.service';
+import { Songs } from '../../dataType';
 
 @Component({
   selector: 'app-home',
@@ -7,18 +8,18 @@ import { AudioControlService } from '../audio-control.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements AfterViewInit {
+  clr: string = '';
+  tracks: Songs[] = [];
+  
+  selectedIndex : number = 0;
+  musicTrack: string = 'assets/Jaan-Hai-Meri(PagalWorld).mp3';
   @Input() track: { image: string; audio: string } | undefined; // Input for track data
   @ViewChild('song') song!: ElementRef<HTMLAudioElement>;
   @ViewChild('progress') progress!: ElementRef<HTMLInputElement>;
   @ViewChild('ctrlIcon') ctrlIcon!: ElementRef<HTMLElement>;
-
-  constructor(private audioControlService: AudioControlService) {}
+  constructor(private audioControlService: AudioControlService) { }
 
   ngAfterViewInit(): void {
-    // Set the audio source from the Input track object
-    if (this.track) {
-      this.song.nativeElement.src = this.track.audio; // Set audio source dynamically
-    }
 
     // Set the progress bar max value based on song duration
     this.song.nativeElement.onloadedmetadata = () => {
@@ -29,11 +30,23 @@ export class HomeComponent implements AfterViewInit {
     this.song.nativeElement.ontimeupdate = () => {
       this.progress.nativeElement.value = this.song.nativeElement.currentTime.toString();
     };
+
+
+    this.audioControlService.getAllSongs().subscribe({
+      next: (result) => {
+        this.tracks = (result);
+      },
+      error: (error) => {
+        console.error('Error Fetching song ', error);
+      }
+    });
+
   }
 
   // Play or Pause the song
   playPause(): void {
     const song = this.song.nativeElement;
+    console.log(song);
     const ctrlIcon = this.ctrlIcon.nativeElement;
 
     // Control multiple tracks using the service
@@ -69,12 +82,31 @@ export class HomeComponent implements AfterViewInit {
   // This method allows the user to manually change the song's current time using the progress bar
   updateSongTime(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
+    console.log(inputElement);
     const newTime = parseFloat(inputElement.value);
-    
+
     if (this.song?.nativeElement) {
       this.song.nativeElement.currentTime = newTime;
     }
 
   }
- 
-}
+
+
+  changeTrack(data: string , i : number) {
+    this.musicTrack = data; // Change the track URL
+    // Reload the audio element
+    setTimeout(() => {
+      this.song.nativeElement.load();
+      this.song.nativeElement.play(); // Auto-play after change (optional)
+    }, 100);
+    this.updatePlayButton(true);
+    this.selectedIndex = i;
+  }
+
+  backwardSong(){
+    this.changeTrack(this.tracks[(this.selectedIndex - 1) % this.tracks.length].song , this.selectedIndex - 1);
+  }
+  forwardSong(){
+    this.changeTrack(this.tracks[(this.selectedIndex + 1) % this.tracks.length].song , this.selectedIndex + 1);
+  }
+} 
