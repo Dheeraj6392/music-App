@@ -1,5 +1,5 @@
 <div class="form-wrapper">
-  <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="song-form mat-elevation-z4">
+  <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="song-form">
     <h2 class="form-title">🎶 Add New Song</h2>
 
     <mat-form-field appearance="outline" class="form-field">
@@ -16,9 +16,12 @@
       <mat-label>Song URL</mat-label>
       <input matInput type="text" formControlName="song" />
     </mat-form-field>
+    
+    <!-- <button type="button" class="btn btn-primary">add song</button> -->
+    <button type="submit" [disabled]="songForm.invalid">Add Song</button>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="songForm.invalid">
+    <!-- <button class="btn btn-primary" color="primary" type="submit" [disabled]="songForm.invalid">
       ➕ Add Song
-    </button>
+    </button> -->
   </form>
 </div>

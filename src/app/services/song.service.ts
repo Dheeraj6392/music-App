@@ -7,7 +7,8 @@ import { Songs } from '../../dataType';
   providedIn: 'root',
 })
 export class SongService {
-  private baseUrl = 'http://localhost:8080/music/add';
+  // http://localhost:8080/music/add
+  private baseUrl = '';
 
   constructor(private http: HttpClient) {}
 

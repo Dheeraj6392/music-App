@@ -17,7 +17,8 @@ html, body {
 
 .content-wrap {
   flex: 1;
-  display: flex; /* Needed to allow vertical centering */
+  display: flex;
+  flex-direction: column; /* ✅ Add this */
   justify-content: center;
   align-items: center;
   padding: 20px;

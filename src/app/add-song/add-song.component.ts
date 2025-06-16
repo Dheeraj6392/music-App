@@ -21,6 +21,7 @@ export class AddSongComponent {
 
   onSubmit() {
   if (this.songForm.valid) {
+    console.log("it is okk");
     const formValue = this.songForm.value;
 
     // Convert id to number
@@ -40,6 +41,8 @@ export class AddSongComponent {
         console.error(err);
       }
     });
+  }else {
+    console.log("not okk");
   }
 }
 

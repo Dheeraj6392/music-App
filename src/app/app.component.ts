@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DataLoaderService } from './services/data-loader.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,17 @@ export class AppComponent implements OnInit , OnDestroy{
   currentColor : string = this.colors[0];
   private colorChangeInterval : any;
 
+
+  constructor(private dataLoader : DataLoaderService){}
+
   ngOnInit(){
     let index = 0;
     this.colorChangeInterval = setInterval(()=>{
       this.currentColor = this.colors[index];
       index = (index + 1) % this.colors.length;
     } , 3000);
+
+    this.dataLoader.loadData();
   }
 
   ngOnDestroy(){

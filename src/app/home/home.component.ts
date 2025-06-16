@@ -10,6 +10,7 @@ import { Songs } from '../../dataType';
 export class HomeComponent implements AfterViewInit {
   clr: string = '';
   tracks: Songs[] = [];
+  currentdiv : String = "";
   
   selectedIndex : number = 0;
   musicTrack: string = 'assets/Jaan-Hai-Meri(PagalWorld).mp3';
@@ -35,6 +36,8 @@ export class HomeComponent implements AfterViewInit {
     this.audioControlService.getAllSongs().subscribe({
       next: (result) => {
         this.tracks = (result);
+        console.log(result);
+        console.log("hello");
       },
       error: (error) => {
         console.error('Error Fetching song ', error);

@@ -1,6 +1,6 @@
 <div class="main">
-
-  <div class="all-song">
+  
+  <div  class="all-song">
     <div *ngFor="let item of tracks; let i = index">
       <div [ngClass]="{'active' : selectedIndex === i}" (click)="changeTrack(item.song , i)">
         <div [class]="'toggle-item'">
