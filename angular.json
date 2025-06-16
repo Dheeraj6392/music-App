@@ -21,7 +21,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",  // Change made here
+          "builder": "@angular-devkit/build-angular:browser", // Change made here
           "options": {
             "outputPath": "dist/music-app",
             "index": "src/index.html",
@@ -37,7 +37,9 @@
                 "input": "src/assets",
                 "output": "/assets"
               },
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/assets",
+              "src/404.html"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
