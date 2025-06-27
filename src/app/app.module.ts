@@ -9,13 +9,14 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule , MatError } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AddSongComponent } from './add-song/add-song.component';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
@@ -31,7 +32,8 @@ const routes: Routes = [
     FooterComponent,
     HeaderComponent,
     SignInComponent,
-    AddSongComponent
+    AddSongComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ const routes: Routes = [
     MatFormFieldModule,
     BrowserAnimationsModule,
      MatButtonModule,
-     MatIconModule
+     MatIconModule,
+     FormsModule
 
   ],
   providers: [

@@ -1,40 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Songs } from '../../dataType';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AudioControlService {
-  private currentSong: HTMLAudioElement | null = null; // Currently playing audio element
-  private currentComponent: any; // Reference to the current component controlling the song
+  private currentSongElement: HTMLAudioElement | null = null;
+  private currentComponentRef: any = null;
+  private currentTrackIndex: number = 0;
+  private tracks: Songs[] = [];
 
-  constructor(private http: HttpClient) { }
-  // This method is called to play a new song, or resume/pause the current one
-  playNewSong(song: HTMLAudioElement, component: any): void {
-    // If there is a current song and it's not the same as the new one, handle it
-    if (this.currentSong && this.currentSong !== song) {
-      // Pause the current song and reset its progress
-      this.currentSong.pause();
-      this.currentSong.currentTime = 0; // Reset the song's current time to 0
+  private isPlayingSubject = new Subject<boolean>();
+  isPlaying$ = this.isPlayingSubject.asObservable();
 
-      // If there is a previous component, reset its button and progress bar
-      if (this.currentComponent) {
-        this.currentComponent.updatePlayButton(false); // Show play icon on the previous component
-        this.currentComponent.resetProgressBar(); // Reset the progress bar on the previous component
-      }
-    }
+  constructor(private http: HttpClient) {}
 
-    // Set the new song and component as current
-    this.currentSong = song;
-    this.currentComponent = component;
-  }
-
-  // getAllSongs() : Observable<Songs[]>{
-  //   return this.http.get<Songs[]>('http://localhost:8080/music')
-  // }
-
+  // Load songs from localStorage or backend
   getAllSongs(): Observable<Songs[]> {
     const data = localStorage.getItem('dbData');
     let parsedData: any = [];
@@ -44,8 +27,99 @@ export class AudioControlService {
       parsedData = Array.isArray(obj.songs) ? obj.songs : [];
     }
 
-    return of(parsedData);
+    this.tracks = parsedData;
+    return of(this.tracks);
   }
 
+  // Assign audio and component
+  registerAudioElement(audio: HTMLAudioElement, component: any) {
+    this.currentSongElement = audio;
+    this.currentComponentRef = component;
 
+    // Set progress max on load
+    audio.onloadedmetadata = () => {
+      component.setProgressMax(audio.duration);
+    };
+
+    // Sync progress while playing
+    audio.ontimeupdate = () => {
+      component.updateProgress(audio.currentTime);
+    };
+  }
+
+  // Play or pause
+  togglePlayPause() {
+    if (!this.currentSongElement) return;
+
+    if (this.currentSongElement.paused) {
+      this.stopOtherSongs();
+      this.currentSongElement.play();
+      this.currentComponentRef.updatePlayButton(true);
+      this.isPlayingSubject.next(true);
+    } else {
+      this.currentSongElement.pause();
+      this.currentComponentRef.updatePlayButton(false);
+      this.isPlayingSubject.next(false);
+    }
+  }
+
+  // Stop others
+  stopOtherSongs() {
+    if (this.currentSongElement) {
+      this.currentSongElement.pause();
+      this.currentSongElement.currentTime = 0;
+      this.currentComponentRef.updatePlayButton(false);
+      this.currentComponentRef.resetProgressBar();
+    }
+  }
+
+  // Change track
+  changeTrack(index: number) {
+    if (!this.tracks[index]) return;
+
+    this.currentTrackIndex = index;
+    const songURL = this.tracks[index].song;
+    this.currentComponentRef.setTrackSource(songURL);
+
+    setTimeout(() => {
+      if (this.currentSongElement) {
+        this.currentSongElement.load();
+        this.currentSongElement.play();
+        this.currentComponentRef.updatePlayButton(true);
+      }
+    }, 100);
+  }
+
+  nextTrack() {
+    const nextIndex = (this.currentTrackIndex + 1) % this.tracks.length;
+    this.changeTrack(nextIndex);
+  }
+
+  previousTrack() {
+    const prevIndex = (this.currentTrackIndex - 1 + this.tracks.length) % this.tracks.length;
+    this.changeTrack(prevIndex);
+  }
+
+  seekTo(time: number) {
+    if (this.currentSongElement) {
+      this.currentSongElement.currentTime = time;
+    }
+  }
+
+  getTrackList(): Songs[] {
+    return this.tracks;
+  }
+
+  getCurrentTrackIndex(): number {
+    return this.currentTrackIndex;
+  }
+
+  playTrackByName(name: string): void {
+  const index = this.tracks.findIndex(track => track.name.toLowerCase() === name.toLowerCase());
+  if (index !== -1) {
+    this.changeTrack(index);
+  } else {
+    console.warn('Track not found:', name);
+  }
+}
 }

@@ -12,7 +12,7 @@
   <!-- Sidebar -->
   <div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
     <ul>
-      <li>Home</li>
+      <li routerLink="/home">Home</li>
       <li>Radio</li>
       <li>Podcast</li>
       <li>Videos</li>
@@ -25,17 +25,81 @@
   <h3 id="logo">TuneTrail</h3>
 
   <div class="_a">
-    <a href="">All</a>
-    <a href="">Trending Songs</a>
-    <a href="">New Songs</a>
+
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        All
+      </button>
+
+      <ul class="dropdown-menu custom-scroll" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let item of tracks; let i = index">
+          <a class="dropdown-item" href="#" (click)="changeTrack(item.song, i); $event.stopPropagation();"
+            [class.active]="i === selectedIndex">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+
+
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Trending Songs
+      </button>
+
+      <ul class="dropdown-menu custom-scroll" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let item of tracks; let i = index">
+          <a class="dropdown-item" href="#" (click)="changeTrack(item.song, i); $event.stopPropagation();"
+            [class.active]="i === selectedIndex">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        New Songs
+      </button>
+
+      <ul class="dropdown-menu custom-scroll" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let item of tracks; let i = index">
+          <a class="dropdown-item" href="#" (click)="changeTrack(item.song, i); $event.stopPropagation();"
+            [class.active]="i === selectedIndex">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+
 
   </div>
 
 
-  <form class="srch" action="/search" method="GET">
-    <input type="text" name="query" placeholder="what do want to play?">
-    <button type="submit" class="search-btn">Search</button>
-  </form>
-   <button class="btn" href="#" role="button" routerLink="/addSong" >Add Song</button>
-  <button class="btn" href="#" role="button" routerLink="/signin" >sign up</button>
+  <!-- <form class="srch" action="/search" method="GET"> -->
+  <div class="dropdown mt-3 position-relative">
+    <input #nameInput type="text" placeholder="Search music" class="form-control" (input)="search(nameInput.value)"
+      autocomplete="off" />
+
+    <ul class="dropdown-menu custom-scroll-dropdown" [class.show]="searchResults.length > 0">
+      <li *ngFor="let item of searchResults">
+        <a class="dropdown-item" href="#" (click)="onSongSelect(item, nameInput)">
+          {{ item.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+
+  <button class="btn" href="#" role="button" routerLink="/auth">sign up</button>
 </div>

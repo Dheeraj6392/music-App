@@ -25,6 +25,10 @@ export class AppComponent implements OnInit , OnDestroy{
     } , 3000);
 
     this.dataLoader.loadData();
+    this.dataLoader.loadUsers().subscribe(() => {
+      const users = this.dataLoader.getStoredUsers();
+      console.log('Loaded users from JSON:', users);
+    });
   }
 
   ngOnDestroy(){

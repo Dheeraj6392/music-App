@@ -7,12 +7,17 @@ import { Songs } from '../../dataType';
   providedIn: 'root',
 })
 export class SongService {
-  // http://localhost:8080/music/add
-  private baseUrl = '';
 
-  constructor(private http: HttpClient) {}
+  private baseUrl = 'http://localhost:8080/music';
+
+  constructor(private http: HttpClient) { }
 
   addSong(song: Songs): Observable<Songs> {
     return this.http.post<Songs>(this.baseUrl, song);
+  }
+
+  seachMusic(musicname: string) {
+    return this.http.get<string[]>(`${this.baseUrl}/searchMusic`, { params: { musicname } }
+    );
   }
 }
