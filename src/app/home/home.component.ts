@@ -9,7 +9,7 @@ import { Songs } from '../../dataType';
 })
 export class HomeComponent implements AfterViewInit {
   tracks: Songs[] = [];
-  selectedIndex: number = 0;
+  selectedIndex: number = -1;
   musicTrack: string = '';
 
 
@@ -47,7 +47,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   forwardSong() {
-    if (this.selectedIndex < this.tracks.length) {
+    if (this.selectedIndex < this.tracks.length - 1) {
       this.selectedIndex += 1;
       this.audioService.nextTrack();
     }

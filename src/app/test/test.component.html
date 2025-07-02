@@ -1,0 +1,24 @@
+<div class="slider-container">
+  <!-- Background images -->
+  <div
+    class="slider-image"
+    [ngStyle]="{ 'background-image': 'url(' + currentImage + ')', 'opacity': currentOpacity }"
+  ></div>
+  <div
+    class="slider-image"
+    [ngStyle]="{ 'background-image': 'url(' + nextImage + ')', 'opacity': nextOpacity }"
+  ></div>
+
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Content -->
+  <div class="content-container" [class.animate]="textAnimation">
+    <h1>Music Is Life</h1>
+    <p class="subtitle">Experience the Best Quality Music</p>
+    <div class="cta-buttons">
+      <button class="btn-primary">Discover More</button>
+      <button class="btn-outline">Listen Now</button>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit , OnDestroy{
 
   currentColor : string = this.colors[0];
   private colorChangeInterval : any;
-
+  flag : boolean = false;
 
   constructor(private dataLoader : DataLoaderService){}
 

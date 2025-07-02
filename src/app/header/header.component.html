@@ -13,9 +13,9 @@
   <div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
     <ul>
       <li routerLink="/home">Home</li>
-      <li>Radio</li>
-      <li>Podcast</li>
-      <li>Videos</li>
+
+      <li routerlink="/podcast">Podcast</li>
+      <li routerlink="/videos">Videos</li>
     </ul>
   </div>
 
@@ -82,15 +82,31 @@
 
   </div>
 
+<!-- 
+  <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        All
+      </button>
+
+      <ul class="dropdown-menu custom-scroll" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let item of tracks; let i = index">
+          <a class="dropdown-item" href="#" (click)="changeTrack(item.song, i); $event.stopPropagation();"
+            [class.active]="i === selectedIndex">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </div> -->
 
   <!-- <form class="srch" action="/search" method="GET"> -->
-  <div class="dropdown mt-3 position-relative">
-    <input #nameInput type="text" placeholder="Search music" class="form-control" (input)="search(nameInput.value)"
+  <div class="dropdown">
+    <input #nameInput type="text" placeholder="Search music" class="form-control" id="dropdownMenuButton1"(input)="search(nameInput.value)"
       autocomplete="off" />
 
-    <ul class="dropdown-menu custom-scroll-dropdown" [class.show]="searchResults.length > 0">
-      <li *ngFor="let item of searchResults">
-        <a class="dropdown-item" href="#" (click)="onSongSelect(item, nameInput)">
+    <ul class="dropdown-menu custom-scroll"  [class.show]="searchResults.length > 0" ria-labelledby="dropdownMenuButton1">
+      <li *ngFor="let item of searchResults;let i = index">
+        <a class="dropdown-item" href="#" (click)="onSongSelect(item, nameInput)" [class.active]="i === selectedIndex">
           {{ item.name }}
         </a>
       </li>
@@ -101,5 +117,5 @@
 
 
 
-  <button class="btn" href="#" role="button" routerLink="/auth">sign up</button>
+  <button class="btn" href="#" role="button" routerLink="/auth">log out</button>
 </div>

@@ -17,6 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AddSongComponent } from './add-song/add-song.component';
 import { AuthComponent } from './auth/auth.component';
+import { TestComponent } from './test/test.component';
+import { PodcastComponent } from './podcast/podcast.component';
+import { VideosComponent } from './videos/videos.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default route
@@ -33,7 +37,11 @@ const routes: Routes = [
     HeaderComponent,
     SignInComponent,
     AddSongComponent,
-    AuthComponent
+    AuthComponent,
+    TestComponent,
+    PodcastComponent,
+    VideosComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

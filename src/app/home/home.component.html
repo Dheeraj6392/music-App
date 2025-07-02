@@ -1,47 +1,46 @@
 <div class="main">
-  
-  <div  class="all-song">
+  <!-- Playlist Section -->
+  <div class="all-song">
+    <h2 class="playlist-title">Your Playlist</h2>
     <div *ngFor="let item of tracks; let i = index">
       <div [ngClass]="{'active' : selectedIndex === i}" (click)="changeTrack(item.song , i)">
-        <div [class]="'toggle-item'">
-          <p>
-            <strong>{{ item.name }} </strong>
-          </p>
+        <div class="toggle-item">
+          <div class="song-info">
+            <p><strong>{{ item.name }}</strong></p>
+            <span class="song-duration">3:45</span>
+          </div>
+          <i class="bi bi-music-note-beamed"></i>
         </div>
       </div>
     </div>
   </div>
-  
 
-  <!-- <div class="all-song">
-    <div *ngFor="let item of tracks; let i = index">
-      <div [ngClass]="{'active' : selectedIndex === i}" (click)="changeTrack(item.song , i)">
-        <div [class]="'toggle-item'">
-          <p>
-            <strong>{{ item.name }} </strong>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-
-
+  <!-- Music Player Section -->
   <div class="container">
     <div class="cards">
-      <img src="assets/music-boy.jpg" alt="image">
+      <img src="assets/music-image.jpg" alt="Now Playing" class="album-art">
+      
+      <div class="song-details">
+        <h3 class="now-playing">Now Playing</h3>
+        <h2 class="song-title">{{ selectedIndex >= 0 ? tracks[selectedIndex].name : 'Select a song' }}</h2>
+      </div>
 
       <audio id="song" #song>
         <source [src]="musicTrack" type="audio/mpeg">
       </audio>
-            
-      <input type="range" value="0" id="progress" #progress (input)="updateSongTime($event)">
+
+      <div class="progress-container">
+        <span class="time-current">0:00</span>
+        <input type="range" value="0" id="progress" #progress (input)="updateSongTime($event)">
+        <span class="time-total">3:45</span>
+      </div>
 
       <div class="controls">
-        <div><i class="bi bi-skip-backward-fill fs-3" (click)="backwardSong()"></i></div>
-        <div><i class="bi bi-play-fill fs-1" id="ctrlIcon" #ctrlIcon (click)="playPause()"></i></div>
-        <div><i class="bi bi-skip-forward-fill fs-3"  (click)="forwardSong()"></i></div>
+        <i class="bi bi-shuffle"></i>
+        <i class="bi bi-skip-backward-fill" (click)="backwardSong()"></i>
+        <div><i class="bi bi-play-fill play-btn" id="ctrlIcon" #ctrlIcon (click)="playPause()"></i></div>
+        <i class="bi bi-skip-forward-fill" (click)="forwardSong()"></i>
+        <i class="bi bi-repeat"></i>
       </div>
     </div>
   </div>
